@@ -38,12 +38,9 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 /* ---------- cursor ---------- */
 .cursor{position:fixed;left:0;top:0;z-index:95;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:transparent;pointer-events:none;
   mix-blend-mode:difference;transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),background .3s;display:grid;place-items:center}
-.cursor-fish{position:absolute;left:50%;top:50%;width:42px;height:24px;margin:-12px 0 0 -21px;fill:var(--fg);transform:rotate(var(--rot,0deg)) scaleY(var(--flip,1));transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),opacity .25s}
-.cursor.hover .cursor-fish{width:64px;height:36px;margin:-18px 0 0 -32px}
-.cursor.view{width:96px;height:96px;margin:-48px 0 0 -48px;mix-blend-mode:normal;background:var(--accent)}
-.cursor.view .cursor-fish{opacity:0}
+.cursor-fish{position:absolute;left:50%;top:50%;width:42px;height:24px;margin:-12px 0 0 -21px;fill:var(--fg);transform:translateY(21px) rotate(-90deg);transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),transform .4s var(--ease)}
+.cursor.hover .cursor-fish,.cursor.view .cursor-fish{width:64px;height:36px;margin:-18px 0 0 -32px;transform:translateY(32px) rotate(-90deg)}
 .cursor-label{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#0a0a0a;opacity:0;transition:opacity .2s}
-.cursor.view .cursor-label{opacity:1}
 @media (hover:none),(pointer:coarse){.cursor{display:none}}
 @media (hover:hover) and (pointer:fine){body,a,button{cursor:none}}
 
