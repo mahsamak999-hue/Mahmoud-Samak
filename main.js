@@ -160,11 +160,20 @@
 
   /* ---------- cursor ---------- */
   const cur = $(".cursor"), curLbl = $(".cursor-label");
-  let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
+  let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my, fishRot = 0;
   addEventListener("pointermove", e => { mx = e.clientX; my = e.clientY; }, { passive: true });
   if (fine) {
     (function loop() {
-      cx += (mx - cx) * .22; cy += (my - cy) * .22;
+      const dx = (mx - cx) * .22, dy = (my - cy) * .22;
+      cx += dx; cy += dy;
+      // the fish swims toward wherever the pointer is heading
+      if (dx * dx + dy * dy > .5) {
+        const a = Math.atan2(dy, dx) * 180 / Math.PI;
+        fishRot += ((a - fishRot + 540) % 360 - 180) * .18;
+      }
+      const r = ((fishRot % 360) + 540) % 360 - 180;
+      cur.style.setProperty("--rot", `${r}deg`);
+      cur.style.setProperty("--flip", Math.abs(r) > 90 ? -1 : 1);
       cur.style.transform = `translate(${cx}px,${cy}px)`;
       requestAnimationFrame(loop);
     })();

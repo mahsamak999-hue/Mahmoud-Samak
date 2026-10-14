@@ -36,10 +36,12 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .loader-count{font-family:var(--serif);font-size:clamp(120px,24vw,360px);line-height:.8;text-align:right;font-variant-numeric:tabular-nums}
 
 /* ---------- cursor ---------- */
-.cursor{position:fixed;left:0;top:0;z-index:95;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--fg);pointer-events:none;
+.cursor{position:fixed;left:0;top:0;z-index:95;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:transparent;pointer-events:none;
   mix-blend-mode:difference;transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),background .3s;display:grid;place-items:center}
-.cursor.hover{width:56px;height:56px;margin:-28px 0 0 -28px}
+.cursor-fish{position:absolute;left:50%;top:50%;width:42px;height:24px;margin:-12px 0 0 -21px;fill:var(--fg);transform:rotate(var(--rot,0deg)) scaleY(var(--flip,1));transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),opacity .25s}
+.cursor.hover .cursor-fish{width:64px;height:36px;margin:-18px 0 0 -32px}
 .cursor.view{width:96px;height:96px;margin:-48px 0 0 -48px;mix-blend-mode:normal;background:var(--accent)}
+.cursor.view .cursor-fish{opacity:0}
 .cursor-label{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#0a0a0a;opacity:0;transition:opacity .2s}
 .cursor.view .cursor-label{opacity:1}
 @media (hover:none),(pointer:coarse){.cursor{display:none}}
@@ -50,8 +52,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   mix-blend-mode:normal;transition:transform .5s var(--ease),background .4s}
 .nav.scrolled{background:linear-gradient(rgba(10,10,10,.85),rgba(10,10,10,0))}
 .nav.hide{transform:translateY(-110%)}
-.nav-mark{display:flex;align-items:center;gap:10px;font-weight:500;font-size:15px}
-.nav-mark img{width:30px;height:30px;object-fit:cover;filter:contrast(6) brightness(.9);mix-blend-mode:screen;border-radius:4px}
+.nav-mark{display:flex;align-items:center;font-weight:500;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
 .nav-links{display:flex;gap:clamp(16px,2.6vw,40px);font-size:14px;color:var(--fg-2)}
 .nav-links a{position:relative;transition:color .3s}
 .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--fg);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
